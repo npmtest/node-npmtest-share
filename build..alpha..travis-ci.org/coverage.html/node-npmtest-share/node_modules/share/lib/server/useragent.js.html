@@ -1,0 +1,1679 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-share/node_modules/share/lib/server/useragent.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-share">npmtest-share (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-share/node_modules/share/lib/server/useragent.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">12.72% <small>(29 / 228)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 92)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">14.8% <small>(29 / 196)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-share/node_modules/share/lib/server/</a> &#187; useragent.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var hat = require('hat');
+var TransformStream = require('stream').Transform;
+var async = require('async');
+&nbsp;
+&nbsp;
+/**
+ * Provides access to the backend of `instance`.
+ *
+ * Create a user agent accessing a share instance
+ *
+ *   userAgent = new UserAgent(instance)
+ *
+ * The user agent exposes the following API to communicate asynchronously with
+ * the share instances backend.
+ * - submit (submit)
+ * - fetch (fetch)
+ * - subscribe (subscribe)
+ * - getOps (get ops)
+ * - query (query)
+ * - queryFetch (query)
+ *
+ *
+ * Middleware
+ * ----------
+ * Each of the API methods also triggers an action (given in brackets) on the
+ * share instance. This enables middleware to modifiy the requests and results
+ * By default the request passed to the middleware contains the properties
+ * - action
+ * - agent
+ * - backend
+ * - collection
+ * - docName
+ * The `collection` and `docName` properties are only set if applicable. In
+ * addition each API method extends the request object with custom properties.
+ * These are documented with the methods.
+ *
+ *
+ * Filters
+ * -------
+ * The documents provided by the `fetch`, `query` and `queryFetch` methods are
+ * filtered with the share instance's `docFilters`.
+ *
+ *   instance.filter(function(collection, docName, docData, next) {
+ *     if (docName == "mario") {
+ *       docData.greeting = "It'se me: Mario";
+ *       next();
+ *     } else {
+ *       next("Document not found!");
+ *     }
+ *   });
+ *   userAgent.fetch('people', 'mario', function(error, data) {
+ *     data.greeting; // It'se me
+ *   });
+ *   userAgent.fetch('people', 'peaches', function(error, data) {
+ *     error == "Document not found!";
+ *   });
+ *
+ * In a filter `this` is the user agent.
+ *
+ * Similarily we can filter the operations that a client can see
+ *
+ *   instance.filterOps(function(collection, docName, opData, next) {
+ *     if (opData.op == 'cheat')
+ *       next("Not on my watch!");
+ *     else
+ *       next();
+ *     }
+ *   });
+ *
+ */
+var UserAgent = <span class="fstat-no" title="function not covered" >function(instance, stream) {</span>
+<span class="cstat-no" title="statement not covered" >  this.instance = instance;</span>
+<span class="cstat-no" title="statement not covered" >  this.backend = instance.backend;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.stream = stream;</span>
+<span class="cstat-no" title="statement not covered" >  this.sessionId = hat();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.connectTime = new Date();</span>
+};
+&nbsp;
+module.exports = UserAgent;
+&nbsp;
+/**
+ * Helper to run the filters over some data. Returns an error string on error,
+ * or nothing on success.  Data is modified in place.
+ */
+UserAgent.prototype._runFilters = <span class="fstat-no" title="function not covered" >function(filters, collection, docName, data, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  async.eachSeries(filters, <span class="fstat-no" title="function not covered" >function(filter, next) {</span></span>
+<span class="cstat-no" title="statement not covered" >    filter.call(self, collection, docName, data, next);</span>
+  }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >    callback(error, error ? null : data);</span>
+  });
+};
+&nbsp;
+UserAgent.prototype.filterDoc = <span class="fstat-no" title="function not covered" >function(collection, docName, data, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  return this._runFilters(this.instance.docFilters, collection, docName, data, callback);</span>
+};
+UserAgent.prototype.filterOp = <span class="fstat-no" title="function not covered" >function(collection, docName, data, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  return this._runFilters(this.instance.opFilters, collection, docName, data, callback);</span>
+};
+&nbsp;
+// This is only used by bulkFetch, but its enough logic that I prefer to
+// separate it out.
+//
+// data is a map from collection name -&gt; doc name -&gt; data.
+UserAgent.prototype.filterDocs = <span class="fstat-no" title="function not covered" >function(data, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var work = 1;</span>
+<span class="cstat-no" title="statement not covered" >  var done = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >    work--;</span>
+<span class="cstat-no" title="statement not covered" >    if (work === 0 &amp;&amp; callback) <span class="cstat-no" title="statement not covered" >callback(null, data);</span></span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var cName in data) {</span>
+<span class="cstat-no" title="statement not covered" >    for (var docName in data[cName]) {</span>
+<span class="cstat-no" title="statement not covered" >      work++;</span>
+<span class="cstat-no" title="statement not covered" >      this.filterDoc(cName, docName, data[cName][docName], <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (err &amp;&amp; callback) {</span>
+<span class="cstat-no" title="statement not covered" >          callback(err);</span>
+<span class="cstat-no" title="statement not covered" >          callback = null;</span>
+        }
+        // Clean up call stack
+<span class="cstat-no" title="statement not covered" >        process.nextTick(done);</span>
+      });
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  done();</span>
+};
+&nbsp;
+UserAgent.prototype.filterOps = <span class="fstat-no" title="function not covered" >function(collection, docName, ops, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!ops) <span class="cstat-no" title="statement not covered" >return callback();</span></span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+<span class="cstat-no" title="statement not covered" >  var i = 0;</span>
+<span class="cstat-no" title="statement not covered" >  (<span class="fstat-no" title="function not covered" >function next(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    var op = ops[i++];</span>
+<span class="cstat-no" title="statement not covered" >    if (op) {</span>
+      // Clean up call stack. Would it be better to modulus the iterator and
+      // only introduce next tick every nth iteration?
+<span class="cstat-no" title="statement not covered" >      process.nextTick(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        agent.filterOp(collection, docName, op, next);</span>
+      });
+    } else {
+<span class="cstat-no" title="statement not covered" >      callback(null, ops);</span>
+    }
+  })();
+};
+&nbsp;
+/**
+ * Builds a request, passes it through the instance's extension stack for the
+ * action and calls callback with the request.
+ */
+UserAgent.prototype.trigger = <span class="fstat-no" title="function not covered" >function(action, collection, docName, request, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  if (typeof request === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >    callback = request;</span>
+<span class="cstat-no" title="statement not covered" >    request = {};</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  request.agent = this;</span>
+<span class="cstat-no" title="statement not covered" >  request.action = action;</span>
+<span class="cstat-no" title="statement not covered" >  if (collection) <span class="cstat-no" title="statement not covered" >request.collection = collection;</span></span>
+<span class="cstat-no" title="statement not covered" >  if (docName) <span class="cstat-no" title="statement not covered" >request.docName = docName;</span></span>
+<span class="cstat-no" title="statement not covered" >  request.backend = this.backend;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.instance._trigger(request, callback);</span>
+};
+&nbsp;
+&nbsp;
+/**
+ * Fetch current snapshot of a document
+ *
+ * Triggers the `fetch` action. The actual fetch is performed with collection
+ * and docName from the middleware request.
+ */
+UserAgent.prototype.fetch = <span class="fstat-no" title="function not covered" >function(collection, docName, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  agent.trigger('fetch', collection, docName, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    collection = action.collection;</span>
+<span class="cstat-no" title="statement not covered" >    docName = action.docName;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    agent.backend.fetch(collection, docName, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      if (data) {</span>
+<span class="cstat-no" title="statement not covered" >        agent.filterDoc(collection, docName, data, callback);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        callback(null, data);</span>
+      }
+    });
+  });
+};
+&nbsp;
+var bulkFetchRequestsEmpty = <span class="fstat-no" title="function not covered" >function(requests) {</span>
+<span class="cstat-no" title="statement not covered" >  for (var cName in requests) {</span>
+<span class="cstat-no" title="statement not covered" >    if (requests[cName].length) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+  }
+<span class="cstat-no" title="statement not covered" >  return true;</span>
+};
+&nbsp;
+// requests is a map from collection -&gt; [docName]
+UserAgent.prototype.bulkFetch = <span class="fstat-no" title="function not covered" >function(requests, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (bulkFetchRequestsEmpty(requests)) <span class="cstat-no" title="statement not covered" >return callback(null, {});</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.instance._hasMiddleware('bulk fetch') || !this.instance._hasMiddleware('fetch')) {</span>
+<span class="cstat-no" title="statement not covered" >    agent.trigger('bulk fetch', null, null, {requests:requests}, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      requests = action.requests;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      agent.backend.bulkFetch(requests, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        agent.filterDocs(data, callback);</span>
+      });
+    });
+  } else {
+    // Could implement this using async...
+<span class="cstat-no" title="statement not covered" >    throw Error('If you have fetch middleware you need to also make bulk fetch middleware');</span>
+  }
+};
+&nbsp;
+&nbsp;
+/**
+ * Get all operations on this document with version in [start, end).
+ *
+ * Tiggers `get ops` action with requst
+ *   { start: start, end: end }
+ */
+UserAgent.prototype.getOps = <span class="fstat-no" title="function not covered" >function(collection, docName, start, end, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  agent.trigger('get ops', collection, docName, {start:start, end:end}, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    agent.backend.getOps(action.collection, action.docName, start, end, <span class="fstat-no" title="function not covered" >function(err, results) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      agent.filterOps(collection, docName, results, callback);</span>
+    });
+  });
+};
+&nbsp;
+<span class="fstat-no" title="function not covered" >function OpTransformStream(agent, collection, docName, stream) {</span>
+<span class="cstat-no" title="statement not covered" >  TransformStream.call(this, {objectMode: true});</span>
+<span class="cstat-no" title="statement not covered" >  this.agent = agent;</span>
+<span class="cstat-no" title="statement not covered" >  this.collection = collection;</span>
+<span class="cstat-no" title="statement not covered" >  this.docName = docName;</span>
+<span class="cstat-no" title="statement not covered" >  this.stream = stream;</span>
+}
+&nbsp;
+OpTransformStream.prototype = Object.create(TransformStream.prototype);
+&nbsp;
+OpTransformStream.prototype.destroy = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >  this.stream.destroy();</span>
+};
+&nbsp;
+OpTransformStream.prototype._transform = <span class="fstat-no" title="function not covered" >function(data, encoding, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var filterOpCallback = getFilterOpCallback(this, callback);</span>
+<span class="cstat-no" title="statement not covered" >  this.agent.filterOp(this.collection, this.docName, data, filterOpCallback);</span>
+};
+&nbsp;
+<span class="fstat-no" title="function not covered" >function getFilterOpCallback(opTransformStream, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >function filterOpCallback(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    opTransformStream.push(err ? {error: err} : data);</span>
+<span class="cstat-no" title="statement not covered" >    callback();</span>
+  };
+}
+&nbsp;
+/**
+ * Filter the data passed through the stream with `filterOp()`
+ *
+ * Returns a new stream that let's us only read these messages from stream wich
+ * where not filtered by `this.filterOp(collection, docName, message)`. If the
+ * filter chain calls an error we read a `{error: 'description'}` message from the
+ * stream.
+ */
+UserAgent.prototype.wrapOpStream = <span class="fstat-no" title="function not covered" >function(collection, docName, stream) {</span>
+<span class="cstat-no" title="statement not covered" >  var opTransformStream = new OpTransformStream(this, collection, docName, stream);</span>
+<span class="cstat-no" title="statement not covered" >  stream.pipe(opTransformStream);</span>
+<span class="cstat-no" title="statement not covered" >  return opTransformStream;</span>
+};
+&nbsp;
+&nbsp;
+/**
+ * Apply `wrapOpStream()` to each stream
+ *
+ * `streams` is a map `collection -&gt; docName -&gt; stream`. It returns the same map
+ * with the streams wrapped.
+ */
+UserAgent.prototype.wrapOpStreams = <span class="fstat-no" title="function not covered" >function(streams) {</span>
+<span class="cstat-no" title="statement not covered" >  for (var cName in streams) {</span>
+<span class="cstat-no" title="statement not covered" >    for (var docName in streams[cName]) {</span>
+<span class="cstat-no" title="statement not covered" >      streams[cName][docName] = this.wrapOpStream(cName, docName, streams[cName][docName]);</span>
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  return streams;</span>
+};
+&nbsp;
+&nbsp;
+/**
+ * Get stream of operations for a document.
+ *
+ * On success it resturns a readable stream of operations for this document.
+ *
+ * Triggers the `subscribe` action with request
+ *   { version: version }
+ */
+UserAgent.prototype.subscribe = <span class="fstat-no" title="function not covered" >function(collection, docName, version, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+<span class="cstat-no" title="statement not covered" >  agent.trigger('subscribe', collection, docName, {version:version}, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    collection = action.collection;</span>
+<span class="cstat-no" title="statement not covered" >    docName = action.docName;</span>
+<span class="cstat-no" title="statement not covered" >    version = action.version;</span>
+<span class="cstat-no" title="statement not covered" >    agent.backend.subscribe(collection, docName, version, <span class="fstat-no" title="function not covered" >function(err, stream) {</span></span>
+<span class="cstat-no" title="statement not covered" >       callback(err, err ? null : agent.wrapOpStream(collection, docName, stream));</span>
+    });
+  });
+};
+&nbsp;
+// requests is a map from cName -&gt; docName -&gt; version.
+UserAgent.prototype.bulkSubscribe = <span class="fstat-no" title="function not covered" >function(requests, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+  // Use a bulk subscribe to check everything in one go.
+<span class="cstat-no" title="statement not covered" >  agent.trigger('bulk subscribe', null, null, {requests: requests}, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    agent.backend.bulkSubscribe(action.requests, <span class="fstat-no" title="function not covered" >function(err, streams) {</span></span>
+<span class="cstat-no" title="statement not covered" >      callback(err, err ? null : agent.wrapOpStreams(streams));</span>
+    });
+  });
+};
+&nbsp;
+&nbsp;
+// DEPRECATED - just call fetch() then subscribe() yourself.
+UserAgent.prototype.fetchAndSubscribe = <span class="fstat-no" title="function not covered" >function(collection, docName, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+<span class="cstat-no" title="statement not covered" >  agent.trigger('fetch', collection, docName, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    agent.trigger('subscribe', action.collection, action.docName, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      collection = action.collection;</span>
+<span class="cstat-no" title="statement not covered" >      docName = action.docName;</span>
+<span class="cstat-no" title="statement not covered" >      agent.backend.fetchAndSubscribe(action.collection, action.docName, <span class="fstat-no" title="function not covered" >function(err, data, stream) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >        agent.filterDoc(collection, docName, data, <span class="fstat-no" title="function not covered" >function (err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >          var wrappedStream = agent.wrapOpStream(collection, docName, stream);</span>
+<span class="cstat-no" title="statement not covered" >          callback(null, data, wrappedStream);</span>
+        });
+      });
+    });
+  });
+};
+&nbsp;
+&nbsp;
+/**
+ * Submits an operation.
+ *
+ * On success it returns the version and the operation.
+ *
+ * Triggers the `submit` action with request
+ *   { opData: opData, channelPrefix: null }
+ * and the `after submit` action with the request
+ *   { opData: opData, snapshot: modifiedSnapshot }
+ */
+UserAgent.prototype.submit = <span class="fstat-no" title="function not covered" >function(collection, docName, opData, options, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  if (typeof options === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >    callback = options;</span>
+<span class="cstat-no" title="statement not covered" >    options = {};</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+<span class="cstat-no" title="statement not covered" >  agent.trigger('submit', collection, docName, {opData: opData, channelPrefix:null}, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    collection = action.collection;</span>
+<span class="cstat-no" title="statement not covered" >    docName = action.docName;</span>
+<span class="cstat-no" title="statement not covered" >    opData = action.opData;</span>
+<span class="cstat-no" title="statement not covered" >    options.channelPrefix = action.channelPrefix;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!opData.preValidate) <span class="cstat-no" title="statement not covered" >opData.preValidate = agent.instance.preValidate;</span></span>
+<span class="cstat-no" title="statement not covered" >    if (!opData.validate) <span class="cstat-no" title="statement not covered" >opData.validate = agent.instance.validate;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    agent.backend.submit(collection, docName, opData, options, <span class="fstat-no" title="function not covered" >function(err, v, ops, snapshot) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      agent.trigger('after submit', collection, docName, {opData: opData, snapshot: snapshot}, <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >        agent.filterOps(collection, docName, ops, <span class="fstat-no" title="function not covered" >function(err, filteredOps) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >          callback(null, v, filteredOps);</span>
+        });
+      });
+    });
+  });
+};
+&nbsp;
+/** Helper to filter query result sets */
+UserAgent.prototype._filterQueryResults = <span class="fstat-no" title="function not covered" >function(collection, results, callback) {</span>
+  // The filter function is asyncronous. We can run all of the query results in parallel.
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+<span class="cstat-no" title="statement not covered" >  async.each(results, <span class="fstat-no" title="function not covered" >function(data, innerCb) {</span></span>
+<span class="cstat-no" title="statement not covered" >    agent.filterDoc(collection, data.docName, data, innerCb);</span>
+  }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >    callback(error, results);</span>
+  });
+};
+&nbsp;
+&nbsp;
+/**
+ * Execute a query and fetch matching documents.
+ *
+ * The result is an array of the matching documents. Each document has in
+ * addtion the `docName` property set to its name.
+ *
+ * Triggers the `query` action with the request
+ *   { query: query, fetch: true, options: options }
+ */
+UserAgent.prototype.queryFetch = <span class="fstat-no" title="function not covered" >function(collection, query, options, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+  // Should we emit 'query' or 'query fetch' here?
+<span class="cstat-no" title="statement not covered" >  agent.trigger('query', collection, null, {query:query, fetch:true, options: options}, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    collection = action.collection;</span>
+<span class="cstat-no" title="statement not covered" >    query = action.query;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    agent.backend.queryFetch(collection, query, options, <span class="fstat-no" title="function not covered" >function(err, results, extra) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      agent._filterQueryResults(collection, results, <span class="fstat-no" title="function not covered" >function(err, results) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >        callback(null, results, extra);</span>
+      });
+    });
+  });
+};
+&nbsp;
+&nbsp;
+/**
+ * Get an QueryEmitter for the query
+ *
+ * The returned emitter fires 'diff' event every time the result of the query
+ * changes.
+ *
+ * Triggers the `query` action with the request
+ *   { query: query, options: options }
+ */
+UserAgent.prototype.query = <span class="fstat-no" title="function not covered" >function(collection, query, options, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var agent = this;</span>
+<span class="cstat-no" title="statement not covered" >  agent.trigger('query', collection, null, {query: query, options: options}, <span class="fstat-no" title="function not covered" >function(err, action) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    collection = action.collection;</span>
+<span class="cstat-no" title="statement not covered" >    query = action.query;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    agent.backend.query(collection, query, options, <span class="fstat-no" title="function not covered" >function(err, emitter, results, extra) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+&nbsp;
+      // Override emitDiff to filter all inserted items
+<span class="cstat-no" title="statement not covered" >      emitter.emitDiff = <span class="fstat-no" title="function not covered" >function(diff) {</span></span>
+<span class="cstat-no" title="statement not covered" >        async.each(diff, <span class="fstat-no" title="function not covered" >function(item, cb) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (item.type === 'insert') {</span>
+<span class="cstat-no" title="statement not covered" >            agent._filterQueryResults(collection, item.values, cb);</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+          }
+<span class="cstat-no" title="statement not covered" >          cb();</span>
+        }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >          if (err) <span class="cstat-no" title="statement not covered" >return emitter.emitError(err);</span></span>
+<span class="cstat-no" title="statement not covered" >          emitter.onDiff(diff);</span>
+        });
+      };
+&nbsp;
+      // TODO: This is buggy. If the emitter emits a diff during a slow piece of
+      // middleware, it'll be lost.
+<span class="cstat-no" title="statement not covered" >      agent._filterQueryResults(collection, results, <span class="fstat-no" title="function not covered" >function(err, results) {</span></span>
+        // Also if there's an error here, the emitter is never removed.
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
+<span class="cstat-no" title="statement not covered" >        callback(null, emitter, results, extra);</span>
+      });
+    });
+  });
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 18 2017 08:53:33 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
